@@ -15,3 +15,9 @@ test('checks if each employee has a name', () => {
     expect(employee.getName().toBe(empName))
 })
 
+test('checks if each employee has an email', () => {
+    const empEmail = "becca@becca.com";
+    const employee = new Employee(empEmail);
+    expect(employee.id).toEqual(expect.any(String));
+    expect(employee.getEmail().toBe(empName))
+})
