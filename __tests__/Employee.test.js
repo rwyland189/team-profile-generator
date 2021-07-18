@@ -11,14 +11,14 @@ test('checks if each employee has an id', () => {
 test('checks if each employee has a name', () => {
     const empName = "Becca";
     const employee = new Employee(empName);
-    expect(employee.id).toEqual(expect.any(String));
+    expect(employee.name).toEqual(expect.any(String));
     expect(employee.getName().toBe(empName))
 })
 
 test('checks if each employee has an email', () => {
     const empEmail = "becca@becca.com";
     const employee = new Employee(empEmail);
-    expect(employee.id).toEqual(expect.any(String));
+    expect(employee.email).toEqual(expect.any(String));
     expect(employee.getEmail().toBe(empName))
 })
 
