@@ -8,4 +8,10 @@ test('checks if each employee has an id', () => {
     expect(employee.getId().toEqual(empId))
 })
 
+test('checks if each employee has a name', () => {
+    const empName = "Becca";
+    const employee = new Employee(empName);
+    expect(employee.id).toEqual(expect.any(String));
+    expect(employee.getName().toBe(empName))
+})
 
