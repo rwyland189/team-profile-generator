@@ -17,8 +17,19 @@ const team = data => {
             ${engineer.getName()}
             ${engineer.getRole()}
             ${engineer.getEmail()}
-            ${engineer.getId()}
+            ${engineer.getGithub()}
             </div>
         `
-    }
+    },
+
+    const teamIntern = intern => {
+        return `
+            <div class="card">
+            ${engineer.getName()}
+            ${engineer.getRole()}
+            ${engineer.getEmail()}
+            ${engineer.getSchool()}
+            </div>
+        `
+    }    
 }
