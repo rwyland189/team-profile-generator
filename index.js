@@ -7,11 +7,12 @@ const inquirer = require('inquirer');
 const path = require('path');
 const fs = require('fs');
 
-const temp = require('./src/template');
-const teammates = [array of teammates]
+const template = require('./src/template');
+const teammates = [];
 
 function genTeam() {
-    function teamManager {
+    // create manager prompt
+    function teamManager() {
         inquirer.prompt([
             {
                 type: "input",
@@ -23,7 +24,23 @@ function genTeam() {
                     }
                     return "Enter a name for the manager."
                 }
+            },
+
+            {
+                type: "input",
+                name: "managerId",
+                message: "What's the manager's ID?",
+                validate = answer => {
+                    const checkId = answer.match(/^[1-9]\d*$/);
+                    if(checkId) {
+                        return true;
+                    }
+                    return "Enter a valid ID number.";
+                },
+
+                
             }
+
         ]).then(answers => {
             const manager = new Manager(answers.managerName)
             teammates.push(manager)
@@ -35,4 +52,4 @@ function genTeam() {
 
 // function generateTeam()
 
-fs.writeFileSync(path, temp(teammates), 'utf-8')
+fs.writeFileSync(path, template(teammates), 'utf-8')
