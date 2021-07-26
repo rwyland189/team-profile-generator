@@ -71,7 +71,12 @@ const generateTeam = teamHtml => {
         .map(engineer => teamEngineer(engineer))
     );
 
-    
+    html.push(teamHtml
+        .filter(employee => employee.getRole() === 'Intern')
+        .map(intern => teamIntern(intern))
+    );
+
+    return html.join("");
 }
 
 
