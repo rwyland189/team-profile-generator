@@ -74,6 +74,31 @@ function generateTeam() {
             createTeam();            
         });
     }
+
+    function createTeam() {
+        inquirer.prompt([
+            {
+                type: "list",
+                name: "memberRole",
+                message: "Select a team member role to add:",
+                choices: [
+                    "Engineer",
+                    "Intern",
+                ]
+            }
+        ])
+        .then(userChoice => {
+            switch (userChoice.memberRole) {
+                case "Engineer":
+                    addEngineer();
+                    break;
+                case "Intern":
+                    addIntern();
+                    break;
+                default: buildTeam();
+            }
+        });
+    }
 }
 
 const addTeamMember = memberData => {
