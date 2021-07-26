@@ -8,6 +8,10 @@ const inquirer = require('inquirer');
 const path = require('path');
 const fs = require('fs');
 
+// need output dir and path
+const OUTPUT_DIR = path.resolve(__dirname, 'output')
+const outputPath = path.join(OUTPUT_DIR, 'teamprofile.html');
+
 const generatePage = require('./src/template');
 const teammates = [];
 const idArray = [];
@@ -223,20 +227,5 @@ function generateTeam() {
         });
     }
 }
-
-const addTeamMember = memberData => {
-    // create member info array if it doesn't exist
-    if (!memberData.info) {
-        memberData.info = [];
-    }
-    return inquirer
-        .prompt([
-            {
-                
-            }
-        ])
-}
-
-// function generateTeam()
 
 fs.writeFileSync(path, generatePage(teammates), 'utf-8')
