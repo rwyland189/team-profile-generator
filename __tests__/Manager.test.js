@@ -1,5 +1,5 @@
 const { test, expect } = require('@jest/globals');
-const Manger = require('../lib/Manager');
+const Manager = require('../lib/Manager');
 
 test('checks if each manager has office number', () => {
     const manOfficeNum = "189";
