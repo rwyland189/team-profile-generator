@@ -56,7 +56,22 @@ const generateTeam = teamHtml => {
                 </div>         
             </div>
         `
-    };  
+    };
+    
+    // add members to html array
+    const html = [];
+
+    html.push(teamHtml
+        .filter(employee => employee.getRole() === 'Manager')
+        .map(manager => teamManager(manager))
+    );
+
+    html.push(teamHtml
+        .filter(employee => employee.getRole() === 'Engineer')
+        .map(engineer => teamEngineer(engineer))
+    );
+
+    
 }
 
 
