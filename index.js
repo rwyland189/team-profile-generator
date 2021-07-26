@@ -68,13 +68,14 @@ function generateTeam() {
             }
         ])
         .then(answers => {
-            const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber)
+            const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
             teammates.push(manager);
             idArray.push(answers.managerId);
             createTeam();            
         });
     }
 
+    // create team
     function createTeam() {
         inquirer.prompt([
             {
@@ -99,6 +100,69 @@ function generateTeam() {
             }
         });
     }
+
+    // addEngineer() function
+    function addEngineer() {
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "engineerName",
+                message: "What's the engineer's name?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true;
+                    }
+                    return "Enter a name for the engineer.";
+                }
+            },
+
+            {
+                type: "input",
+                name: "engineerId",
+                message: "What's the engineers's ID?",
+                validate: answer => {
+                    const checkId = answer.match(/^[1-9]\d*$/);
+                    if(checkId) {
+                        return true;
+                    }
+                    return "Enter a valid ID number.";
+                }
+            },
+
+            {
+                type: "input",
+                name: "engineerEmail",
+                message: "What's the engineer's email?",
+                validate: answer => {
+                    const checkEmail = answer.match(/\S+@\S+\.\S+/);
+                    if(checkEmail) {
+                        return true;
+                    }
+                    return "Enter a valid email.";
+                }
+            },
+
+            {
+                type: "input",
+                name: "engineerGithub",
+                message: "What's the engineer's GitHub username?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true;
+                    }
+                    return "Enter the engineer's GitHub username.";
+                }
+            }
+        ])
+        .then(answers => {
+            const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+            teammates.push(engineer);
+            idArray.push(answers.engineerId);
+            createTeam();            
+        });
+    }
+
+    
 }
 
 const addTeamMember = memberData => {
