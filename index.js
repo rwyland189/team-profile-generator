@@ -119,7 +119,7 @@ function generateTeam() {
             {
                 type: "input",
                 name: "engineerId",
-                message: "What's the engineers's ID?",
+                message: "What's the engineer's ID?",
                 validate: answer => {
                     const checkId = answer.match(/^[1-9]\d*$/);
                     if(checkId) {
@@ -162,7 +162,66 @@ function generateTeam() {
         });
     }
 
-    
+    // addIntern() function
+    function addIntern() {
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "internName",
+                message: "What's the intern's name?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true;
+                    }
+                    return "Enter a name for the intern.";
+                }
+            },
+
+            {
+                type: "input",
+                name: "internId",
+                message: "What's the intern's ID?",
+                validate: answer => {
+                    const checkId = answer.match(/^[1-9]\d*$/);
+                    if(checkId) {
+                        return true;
+                    }
+                    return "Enter a valid ID number.";
+                }
+            },
+
+            {
+                type: "input",
+                name: "internEmail",
+                message: "What's the intern's email?",
+                validate: answer => {
+                    const checkEmail = answer.match(/\S+@\S+\.\S+/);
+                    if(checkEmail) {
+                        return true;
+                    }
+                    return "Enter a valid email.";
+                }
+            },
+
+            {
+                type: "input",
+                name: "internSchool",
+                message: "What school does the intern attend?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true;
+                    }
+                    return "Enter the intern's school.";
+                }
+            }
+        ])
+        .then(answers => {
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+            teammates.push(intern);
+            idArray.push(answers.internId);
+            createTeam();            
+        });
+    }
 }
 
 const addTeamMember = memberData => {
