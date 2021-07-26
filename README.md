@@ -10,10 +10,11 @@
  
    ## Walkthrough Video
    ### Link
+   https://drive.google.com/file/d/19v8vxDAhY3O2nODzVVFJtprjqjMLIrjZ/view
  
 
   ### View as GIF
-  ![Walkthrough](./assets/Walkthrough.gif)
+  ![Walkthrough](./assets/walkthrough.gif)
 
   ## Description
   A Node.js command-line application that will generate an HTML webpage displaying a team's profile of all employees. Unit tests were created for each of the employee's roles.
