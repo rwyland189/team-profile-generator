@@ -52,8 +52,18 @@ function genTeam() {
                 }
             },
 
-            
-
+            {
+                type: "input",
+                name: "managerOfficeNumber",
+                message: "What's the manager's office number?",
+                validate = answer => {
+                    const checkOffNum = answer.match(/^[1-9]\d*$/);
+                    if(checkOffNum) {
+                        return true;
+                    }
+                    return "Enter a valid office number.";
+                }
+            }
         ]).then(answers => {
             const manager = new Manager(answers.managerName)
             teammates.push(manager)
