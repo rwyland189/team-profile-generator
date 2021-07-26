@@ -37,9 +37,22 @@ function genTeam() {
                     }
                     return "Enter a valid ID number.";
                 },
+            },
 
-                
-            }
+            {
+                type: "input",
+                name: "managerEmail",
+                message: "What's the manager's email?",
+                validate = answer => {
+                    const checkEmail = answer.match(/\S+@\S+\.\S+/);
+                    if(checkEmail) {
+                        return true;
+                    }
+                    return "Enter a valid email.";
+                }
+            },
+
+            
 
         ]).then(answers => {
             const manager = new Manager(answers.managerName)
