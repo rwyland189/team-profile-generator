@@ -16,6 +16,9 @@
   ### View as GIF
   ![Walkthrough](./assets/walkthrough.gif)
 
+  ## Screenshot
+  ![Screenshot](./assets/screenshot.png)
+
   ## Description
   A Node.js command-line application that will generate an HTML webpage displaying a team's profile of all employees. Unit tests were created for each of the employee's roles.
 
