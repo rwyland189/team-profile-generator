@@ -12,7 +12,7 @@ const fs = require('fs');
 const OUTPUT_DIR = path.resolve(__dirname, 'output')
 const outputPath = path.join(OUTPUT_DIR, 'teamprofile.html');
 
-const generatePage = require('./src/template');
+const render = require('./src/template');
 const teammates = [];
 const idArray = [];
 
@@ -89,6 +89,7 @@ function generateTeam() {
                 choices: [
                     "Engineer",
                     "Intern",
+                    "I'm done adding team members"
                 ]
             }
         ])
@@ -232,11 +233,11 @@ function generateTeam() {
         if(!fs.existsSync(OUTPUT_DIR)) {
             fs.mkdirSync(OUTPUT_DIR)
         }
-        fs.writeFileSync(outputPath, generatePage(teammates), 'utf-8');
+        fs.writeFileSync(outputPath, render(teammates), 'utf-8');
     }
     
     // create new team with new manager
-    createManager();
+    teamManager();
 }
 
 generateTeam();
