@@ -23,10 +23,18 @@ const generateTeam = teamHtml => {
     const teamEngineer = engineer => {
         return `
             <div class="card">
-            ${engineer.getName()}
-            ${engineer.getRole()}
-            ${engineer.getEmail()}
-            ${engineer.getGithub()}
+                <div class="card-header">
+                    <h2 class="card-title">${engineer.getName()}</h2>
+                    <h3 class="card-title">${engineer.getRole()}</h3>
+                </div>
+
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">ID: ${engineer.getId()}</li>
+                        <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}:>${engineer.getEmail()}</a></li>
+                        <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.getGitHub()} target="_blank">${engineer.getGitHub()}</a></li>
+                    </ul>
+                </div>         
             </div>
         `
     };
