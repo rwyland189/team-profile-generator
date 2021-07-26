@@ -3,14 +3,16 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+// import inquirer
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require('fs');
 
-const template = require('./src/template');
+const generatePage = require('./src/template');
 const teammates = [];
+const idArray = [];
 
-function genTeam() {
+function generateTeam() {
     // create manager prompt
     function teamManager() {
         inquirer.prompt([
@@ -18,7 +20,7 @@ function genTeam() {
                 type: "input",
                 name: "managerName",
                 message: "What's the manager's name?",
-                validate = answer => {
+                validate: answer => {
                     if(answer !== "") {
                         return true;
                     }
@@ -30,20 +32,20 @@ function genTeam() {
                 type: "input",
                 name: "managerId",
                 message: "What's the manager's ID?",
-                validate = answer => {
+                validate: answer => {
                     const checkId = answer.match(/^[1-9]\d*$/);
                     if(checkId) {
                         return true;
                     }
                     return "Enter a valid ID number.";
-                },
+                }
             },
 
             {
                 type: "input",
                 name: "managerEmail",
                 message: "What's the manager's email?",
-                validate = answer => {
+                validate: answer => {
                     const checkEmail = answer.match(/\S+@\S+\.\S+/);
                     if(checkEmail) {
                         return true;
@@ -56,7 +58,7 @@ function genTeam() {
                 type: "input",
                 name: "managerOfficeNumber",
                 message: "What's the manager's office number?",
-                validate = answer => {
+                validate: answer => {
                     const checkOffNum = answer.match(/^[1-9]\d*$/);
                     if(checkOffNum) {
                         return true;
@@ -64,15 +66,29 @@ function genTeam() {
                     return "Enter a valid office number.";
                 }
             }
-        ]).then(answers => {
-            const manager = new Manager(answers.managerName)
-            teammates.push(manager)
-            
-        })
+        ])
+        .then(answers => {
+            const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber)
+            teammates.push(manager);
+            idArray.push(answers.managerId);
+            createTeam();            
+        });
     }
 }
-// inquirer
+
+const addTeamMember = memberData => {
+    // create member info array if it doesn't exist
+    if (!memberData.info) {
+        memberData.info = [];
+    }
+    return inquirer
+        .prompt([
+            {
+                
+            }
+        ])
+}
 
 // function generateTeam()
 
-fs.writeFileSync(path, template(teammates), 'utf-8')
+fs.writeFileSync(path, generatePage(teammates), 'utf-8')
